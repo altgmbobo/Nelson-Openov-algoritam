@@ -62,7 +62,12 @@ void print_solution(){
     for(auto& it : useT){
         print_term(it.first);
         cout << " -> ";
+        if(it.second.empty()){
+            cout << endl;
+            continue;
+        }
         print_class(it.second);
+        cout << endl;
     }
 }
 
@@ -70,9 +75,10 @@ void start(){
     for(auto term : d){
         useT.insert(pair<TermPtr,vector<TermPtr>>(term, vector<TermPtr>()));
         findT[term] = term;
-        for(const auto user : d)
-            if(use(term, user))
+        for(auto user : d)
+            if(use(term, user)){
                 useT[term].push_back(user);
+            }
     }
 
     for(auto& it : eq)
@@ -197,8 +203,6 @@ void print_term(TermPtr term) {
     }
 }
 
-
-
 int main(){
     for(char c = 'x'; c < 'z' + 1; c++){
         auto s = string(1, c);
@@ -207,23 +211,13 @@ int main(){
     d.push_back(FunctionT("f", {d[0], d[1]}));
     d.push_back(FunctionT("f", {d[2], d[1]}));
     d.push_back(VariableT("a"));
+    d.push_back(FunctionT("g", {d[0]}));
     eq.push_back(pair<TermPtr, TermPtr>(d[0], d[1]));
     eq.push_back(pair<TermPtr, TermPtr>(d[1], d[2]));
-//    for(auto it : d){
-//        print_term(it);
-//        cout << endl;
-//    }
     start();
     print_solution();
-//    pair<int, char> p;
-//    p.first = 100;
-//    p.second = 'a';
-//    cout << p.first << ' ' << p.second;
-//    pair<int,int> p = std::make_pair<int,int>(1,1);
-//    cout << p.first << " " << p.second;
+
 
 }
 
 
-//inicijalizacija use mape i find mape
-//pokretanje merge-a
