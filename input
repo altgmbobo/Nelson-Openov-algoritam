@@ -1,2 +1,2 @@
-D = {z,y,x,F(x),F(F(z)),F(z)};
+D = {z,y,x,F(x),F(z)};
 E = {z = y,y=x};
