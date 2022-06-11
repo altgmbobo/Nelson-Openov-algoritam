@@ -1,2 +1,2 @@
-# Nelson-Ovenov-algoritam
+# Nelson-Openov-algoritam
 Seminarski rad iz AR
